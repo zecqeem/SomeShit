@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>LABA</artifactId>
+	<artifactId>WithoutBruteForceSecurity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Laba</name>
 	<description>Demo project for Spring Boot</description>
