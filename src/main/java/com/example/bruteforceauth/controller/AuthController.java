@@ -13,16 +13,15 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping({"/login"})
+    @PostMapping("/login")
     public LoginResponse login(@RequestBody(required = false) LoginRequest request,
                                @RequestParam(value = "username", required = false) String username,
                                @RequestParam(value = "password", required = false) String password) {
-        // Если запрос приходит с параметрами формы
+        // If the request comes with form parameters
         if (username != null && password != null) {
             request = new LoginRequest(username, password);
         }
 
         return authService.login(request);
     }
-
 }
