@@ -103,7 +103,7 @@
                 const messageElement = document.getElementById('message');
                 if (data.success) {
                     messageElement.className = 'success';
-                    messageElement.innerText = data.message;
+                    window.location.href = 'secret.html';
                 } else {
                     messageElement.className = 'error';
                     messageElement.innerText = data.message;

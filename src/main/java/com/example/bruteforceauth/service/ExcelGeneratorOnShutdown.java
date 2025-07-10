@@ -28,6 +28,8 @@ public class ExcelGeneratorOnShutdown {
             try (FileOutputStream out = new FileOutputStream("login_attempts.xlsx")) {
                 out.write(data);
                 System.out.println("Excel file saved before shutdown: login_attempts.xlsx");
+                repository.deleteAll();
+                System.out.println("Login attempts table cleared.");
             }
 
         } catch (Exception e) {

@@ -21,6 +21,9 @@ public class AuthService {
     @Autowired
     private LoginAttemptRepository loginAttemptRepository;
 
+    @Autowired
+    private PasswordHASH passwordHASH;
+
     private static final int MAX_ATTEMPTS = 5;
     private static final int CHILL_MINUTES = 5;
 
@@ -56,7 +59,7 @@ public class AuthService {
 
         User user = userOpt.get();
 
-        if (user.getPassword().equals(request.getPassword())) {
+        if (passwordHASH.verify(user.getPassword(), request.getPassword())) {
             // Successful login — reset attempts
             attempt.setAttempts(0);
             attempt.setBlocked(false);
