@@ -12,3 +12,11 @@ CREATE TABLE IF NOT EXISTS login_attempts (
                                               blocked BOOLEAN NOT NULL,
                                               blocked_at TIMESTAMP NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS imdb_top (
+                             id SERIAL PRIMARY KEY,
+                             rank INT,
+                             title VARCHAR(255),
+                             year VARCHAR(10),
+                             rating VARCHAR(10)
+);
