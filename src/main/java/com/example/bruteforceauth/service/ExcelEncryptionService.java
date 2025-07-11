@@ -1,34 +1,26 @@
 package com.example.bruteforceauth.service;
 
-import org.apache.poi.poifs.crypt.EncryptionInfo;
-import org.apache.poi.poifs.crypt.EncryptionMode;
-import org.apache.poi.poifs.crypt.Encryptor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Workbook;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.MessageDigest;
+import java.util.Arrays;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 
 @Service
 public class ExcelEncryptionService {
 
     public byte[] encryptWorkbook(byte[] workbookBytes, String password) throws Exception {
-        POIFSFileSystem fs = new POIFSFileSystem();
-        EncryptionInfo info = new EncryptionInfo(EncryptionMode.agile);
-        Encryptor encryptor = info.getEncryptor();
-        encryptor.confirmPassword(password);
+        // Перетворюємо пароль на 128-бітний AES-ключ
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        byte[] key = sha.digest(password.getBytes("UTF-8"));
+        key = Arrays.copyOf(key, 16); // 128-bit ключ
 
-        try (
-                ByteArrayInputStream bis = new ByteArrayInputStream(workbookBytes);
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                OutputStream os = encryptor.getDataStream(fs)
-        ) {
-            bis.transferTo(os);
-            os.close(); // завершает поток для шифрования
-            fs.writeFilesystem(bos);
-            return bos.toByteArray();
-        }
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+
+        Cipher cipher = Cipher.getInstance("AES"); // AES/ECB/PKCS5Padding — за замовчуванням
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+        return cipher.doFinal(workbookBytes);
     }
 }
