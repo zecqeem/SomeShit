@@ -61,10 +61,10 @@ public class ImdbController {
         }
     }
     @GetMapping("/excel/protected")
-    public ResponseEntity<byte[]> downloadExcelWithPassword() throws Exception {
+    public ResponseEntity<byte[]> downloadExcelWithPassword(@RequestParam String password) throws Exception {
         List<ImdbTop250> movies = imdbTop250ParserService.getAllMovies();
         byte[] workbook = excelService.generateImdbTop250Excel(movies);
-        byte[] encrypted = encryptionService.encryptWorkbook(workbook, "supersecret");
+        byte[] encrypted = encryptionService.encryptWorkbook(workbook, password);
 
         return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=imdb_protected.xlsx")
