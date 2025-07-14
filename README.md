@@ -34,3 +34,15 @@ A Spring Boot web application that securely parses the **Top 25 movies from IMDb
 - Java 17+
 - Maven
 - PostgreSQL
+
+---
+
+
+## ⬇️ Download
+
+You can download the latest prebuilt `.jar` file from the [Releases](https://github.com/zecqeem/SomeShit/releases) section.
+
+To run:
+
+```bash
+java -jar bruteforceauth-0.0.1-SNAPSHOT.jar
