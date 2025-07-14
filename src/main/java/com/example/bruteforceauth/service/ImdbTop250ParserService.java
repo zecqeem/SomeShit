@@ -34,7 +34,7 @@ public class ImdbTop250ParserService {
 
         for (Element row : rows) {
             try {
-                // Название
+                // title
                 Element titleElement = row.selectFirst("h3.ipc-title__text");
                 if (titleElement == null) titleElement = row.selectFirst("h3"); // на всякий случай
                 if (titleElement == null) {
@@ -42,14 +42,14 @@ public class ImdbTop250ParserService {
                 }
                 String title = titleElement.text();
 
-                // Год — первый span с классом dli-title-metadata-item
+                // Year — fidst span dli-title-metadata-item
                 Elements yearElements = row.select("span.dli-title-metadata-item");
                 if (yearElements.isEmpty()) {
                     continue;
                 }
                 String year = yearElements.get(0).text();
 
-                // Рейтинг
+                // Rate
                 Element ratingElement = row.selectFirst("span.ipc-rating-star--rating");
                 if (ratingElement == null) {
                     continue;
@@ -67,7 +67,7 @@ public class ImdbTop250ParserService {
 
                 rank++;
             } catch (Exception e) {
-                System.err.println("❌ Ошибка парсинга: " + e.getMessage());
+                System.err.println("❌ PARSING ERROR : " + e.getMessage());
             }
         }
 

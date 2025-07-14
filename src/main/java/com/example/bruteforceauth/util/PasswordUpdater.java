@@ -22,7 +22,7 @@ public class PasswordUpdater {
     @Autowired
     private PasswordHASH passwordHASH;
 
-    private static final boolean SHOULD_UPDATE = false;
+    private static final boolean SHOULD_UPDATE = false;//change when rotation
 
     @PostConstruct
     public void updatePasswordsIfNeeded() {
