@@ -38,6 +38,14 @@ A Spring Boot web application that securely parses the **Top 25 movies from IMDb
 ---
 
 
+## 🔐 Default Login Credentials
+
+> Use these credentials to log in and access the application:
+Username: admin
+Password: b_L@&5HFP”6:akbE
+
+---
+
 ## ⬇️ Download
 
 You can download the latest prebuilt `.jar` file from the [Releases](https://github.com/zecqeem/SomeShit/releases) section.
@@ -47,12 +55,5 @@ To run:
 ```bash
 java -jar bruteforceauth-0.0.1-SNAPSHOT.jar
 
----
-
-## 🔐 Default Login Credentials
-
-> Use these credentials to log in and access the application:
-Username: admin
-Password: b_L@&5HFP”6:akbE
 
 
